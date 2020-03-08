@@ -10,7 +10,7 @@ use App\Http\Resources\Station as StationResource;
 class StationController extends Controller
 {
     /**
-     * Get outlet listing on Leaflet JS geoJSON data structure.
+     * Get station listing on Leaflet JS geoJSON data structure.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse

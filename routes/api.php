@@ -24,3 +24,6 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
      */
     Route::get('stations', 'StationController@index')->name('stations.index');
 });
+
+
+Route::post('add_measure','Api\WeatherCharacteristicController@store');

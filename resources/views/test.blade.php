@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
 {{--    <div class="row justify-content-center">--}}
-{{--        <div class="col-md-8">--}}
-{{--            <div class="card">--}}
+    {{--        <div class="col-md-10">--}}
+    {{--            <div class="card">--}}
 {{--                <div class="card-header">Dashboard</div>--}}
 
 {{--                <div class="card-body">--}}
@@ -26,16 +26,35 @@
     <section class="content">
 
 
-        <div class="row"><div class="col-md-12"><div class="callout callout-info">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="callout callout-info">
                     <h4>Chartjs</h4>
-                </div></div></div><div class="row"><div class="col-md-6"><div class="box">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Bar chart</h3>
                         <div class="box-tools pull-right">
                         </div><!-- /.box-tools -->
                     </div><!-- /.box-header -->
-                    <div class="box-body" style="display: block;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                        <canvas id="bar" style="width: 300px; display: block; height: 149px;" width="600" height="298" class="chartjs-render-monitor"></canvas>
+                    <div class="box-body" style="display: block;">
+                        <div class="chartjs-size-monitor"
+                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                            </div>
+                        </div>
+                        <canvas id="bar" style="width: 300px; display: block; height: 149px;" width="600" height="298"
+                                class="chartjs-render-monitor"></canvas>
                         <script>
                             $(document).ready(function () {
 
@@ -107,14 +126,29 @@
 
                 <script>
 
-                </script></div><div class="col-md-6"><div class="box">
+                </script>
+            </div>
+            <div class="col-md-10">
+                <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Scatter chart</h3>
                         <div class="box-tools pull-right">
                         </div><!-- /.box-tools -->
                     </div><!-- /.box-header -->
-                    <div class="box-body" style="display: block;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                        <canvas id="scatter" style="width: 300px; display: block; height: 149px;" width="600" height="298" class="chartjs-render-monitor"></canvas>
+                    <div class="box-body" style="display: block;">
+                        <div class="chartjs-size-monitor"
+                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                            </div>
+                        </div>
+                        <canvas id="scatter" style="width: 300px; display: block; height: 149px;" width="600"
+                                height="298" class="chartjs-render-monitor"></canvas>
                         <script>
                             $(document).ready(function () {
                                 function randomScalingFactor() {
@@ -203,14 +237,29 @@
 
                 <script>
 
-                </script></div><div class="col-md-6"><div class="box">
+                </script>
+            </div>
+            <div class="col-md-10">
+                <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Line chart</h3>
                         <div class="box-tools pull-right">
                         </div><!-- /.box-tools -->
                     </div><!-- /.box-header -->
-                    <div class="box-body" style="display: block;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                        <canvas id="line" style="width: 300px; display: block; height: 149px;" width="600" height="298" class="chartjs-render-monitor"></canvas>
+                    <div class="box-body" style="display: block;">
+                        <div class="chartjs-size-monitor"
+                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                            </div>
+                        </div>
+                        <canvas id="line" style="width: 300px; display: block; height: 149px;" width="600" height="298"
+                                class="chartjs-render-monitor"></canvas>
                         <script>
                             $(document).ready(function () {
 
@@ -304,14 +353,31 @@
 
                 <script>
 
-                </script></div></div><div class="row"><div class="col-md-6"><div class="box">
+                </script>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Doughnut chart</h3>
                         <div class="box-tools pull-right">
                         </div><!-- /.box-tools -->
                     </div><!-- /.box-header -->
-                    <div class="box-body" style="display: block;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                        <canvas id="doughnut" style="width: 300px; display: block; height: 149px;" width="600" height="298" class="chartjs-render-monitor"></canvas>
+                    <div class="box-body" style="display: block;">
+                        <div class="chartjs-size-monitor"
+                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                            </div>
+                        </div>
+                        <canvas id="doughnut" style="width: 300px; display: block; height: 149px;" width="600"
+                                height="298" class="chartjs-render-monitor"></canvas>
                         <script>
                             $(document).ready(function () {
 
@@ -382,14 +448,29 @@
 
                 <script>
 
-                </script></div><div class="col-md-6"><div class="box">
+                </script>
+            </div>
+            <div class="col-md-10">
+                <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Chart.js Combo Bar Line Chart</h3>
                         <div class="box-tools pull-right">
                         </div><!-- /.box-tools -->
                     </div><!-- /.box-header -->
-                    <div class="box-body" style="display: block;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                        <canvas id="bar-line" style="width: 300px; display: block; height: 149px;" width="600" height="298" class="chartjs-render-monitor"></canvas>
+                    <div class="box-body" style="display: block;">
+                        <div class="chartjs-size-monitor"
+                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                            </div>
+                        </div>
+                        <canvas id="bar-line" style="width: 300px; display: block; height: 149px;" width="600"
+                                height="298" class="chartjs-render-monitor"></canvas>
                         <script>
                             $(document).ready(function () {
 
@@ -479,14 +560,29 @@
 
                 <script>
 
-                </script></div><div class="col-md-6"><div class="box">
+                </script>
+            </div>
+            <div class="col-md-10">
+                <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Chart.js Line Chart - Stacked Area</h3>
                         <div class="box-tools pull-right">
                         </div><!-- /.box-tools -->
                     </div><!-- /.box-header -->
-                    <div class="box-body" style="display: block;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                        <canvas id="line-stacked" style="width: 300px; display: block; height: 149px;" width="600" height="298" class="chartjs-render-monitor"></canvas>
+                    <div class="box-body" style="display: block;">
+                        <div class="chartjs-size-monitor"
+                             style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                 style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                            </div>
+                        </div>
+                        <canvas id="line-stacked" style="width: 300px; display: block; height: 149px;" width="600"
+                                height="298" class="chartjs-render-monitor"></canvas>
                         <script>
                             $(document).ready(function () {
 

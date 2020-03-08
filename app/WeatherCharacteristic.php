@@ -18,7 +18,7 @@ class WeatherCharacteristic extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'station_id', 'type', 'value','measured_at'
     ];
 
     /**

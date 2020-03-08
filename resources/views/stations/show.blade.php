@@ -39,8 +39,13 @@
             @endif
         </div>
     </div>
+
+</div>
+<br>
+<br>
+<div class="row  justify-content-center" >
     <div class="col-md-8">
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="myChart" height="250" ></canvas>
     </div>
 </div>
 @endsection

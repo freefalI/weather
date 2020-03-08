@@ -57,7 +57,7 @@
         };
 
         var popupContent = "Your location : " + latitude + ", " + longitude + ".";
-        popupContent += '<br><a href="{{ route('stations.create') }}?latitude=' + latitude + '&longitude=' + longitude + '">Add new outlet here</a>';
+        popupContent += '<br><a href="{{ route('stations.create') }}?latitude=' + latitude + '&longitude=' + longitude + '">Add new station here</a>';
 
         theMarker = L.marker([latitude, longitude]).addTo(map);
         theMarker.bindPopup(popupContent)

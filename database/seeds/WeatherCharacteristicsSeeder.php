@@ -35,30 +35,38 @@ class WeatherCharacteristicsSeeder extends Seeder
                 $data[0][] = [
                     'station_id' => $station->id,
                     'value' => random_int(20, 100),
-                    'measured_at' => $date->toDateTimeString()
+                    'measured_at' => $date->toDateTimeString(),
+                    'type'=>'App\Humidity'
                 ];
                 $data[1][] = [
                     'station_id' => $station->id,
                     'value' => random_int(20, 100),
-                    'measured_at' => $date->toDateTimeString()
+                    'measured_at' => $date->toDateTimeString(),
+                    'type'=>'App\Precipitation'
+
 
                 ];
                 $data[2][] = [
                     'station_id' => $station->id,
                     'value' => random_int(-50, 50),
-                    'measured_at' => $date->toDateTimeString()
+                    'measured_at' => $date->toDateTimeString(),
+                    'type'=>'App\AirTemperature'
 
                 ];
                 $data[3][] = [
                     'station_id' => $station->id,
                     'value' => random_int(-20, 60),
-                    'measured_at' => $date->toDateTimeString()
+                    'measured_at' => $date->toDateTimeString(),
+                    'type'=>'App\RoadTemperature'
+
 
                 ];
                 $data[4][] = [
                     'station_id' => $station->id,
                     'value' => random_int(100, 1000),
-                    'measured_at' => $date->toDateTimeString()
+                    'measured_at' => $date->toDateTimeString(),
+                    'type'=>'App\AtmospherePressure'
+
 
                 ];
             }

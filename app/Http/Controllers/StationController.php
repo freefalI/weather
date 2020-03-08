@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Station;
+use App\WeatherCharacteristic;
 use Illuminate\Http\Request;
 
 class StationController extends Controller
@@ -66,7 +67,25 @@ class StationController extends Controller
      */
     public function show(Station $station)
     {
-        return view('stations.show', compact('station'));
+        start_measure('render', 'Time for rendering');
+
+        $res = WeatherCharacteristic::where('station_id', $station->id)->get();
+        stop_measure('render');
+
+        start_measure('render1', 'Time for rendering2');
+        $weatherData = $res->groupBy('type');//->map(function ($val){return $val->toArray();});
+//        dump($weatherData);
+        stop_measure('render1');
+        start_measure('render3', 'Time for rendering3');
+
+//        $res =Humidity::where('station_id',$station->id)->get();
+//        $res =AtmospherePressure::where('station_id',$station->id)->get();
+//        $res =AirTemperature::where('station_id',$station->id)->get();
+//        $res =RoadTemperature::where('station_id',$station->id)->get();
+//        $res =Precipitation::where('station_id',$station->id)->get();
+//        stop_measure('render3');
+        $dataForCharts = [];
+        return view('stations.show', ['station'=>$station,'measureData'=>$weatherData]);
     }
 
     /**

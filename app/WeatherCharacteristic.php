@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class WeatherCharacteristic extends Model
 {
     use \Parental\HasChildren;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.

@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/', 'MapController@index');
+
+
+/*
+ * Stations Routes
+ */
+Route::get('/stations_list', 'MapController@index')->name('station_map.index');
+Route::resource('stations', 'StationController');
+

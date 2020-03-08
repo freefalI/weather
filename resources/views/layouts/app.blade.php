@@ -16,6 +16,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('styles')
+    @stack('styles_stack')
 </head>
 <body>
 <div id="app">

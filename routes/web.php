@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'MapController@index');
 
 
+Route::get('/test', 'TestController@index');
 /*
  * Stations Routes
  */

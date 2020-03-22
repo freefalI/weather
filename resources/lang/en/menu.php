@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'stations' => 'Our Stations',
+    'stations' => 'Stations map',
 ];

@@ -32,38 +32,97 @@ class WeatherCharacteristicsSeeder extends Seeder
 
             for ($date = clone $timeMin; $date < Carbon::now(); $date = $date->addDay()) {
 //                dump($date->toDateTimeString());
+                if (count($data[0])) {
+                    $prev = $data[0][count($data[0]) - 1]['value'];
+                    dump($prev);
+//                    if($prev>25 && $prev < 95) {
+                    $newNumber = random_int($prev - 10, $prev + 10);
+//                    }
+//                    $newNumber =random_int($prev-5, $prev+5);
+                } else {
+                    $newNumber = random_int(40,60);
+                }
                 $data[0][] = [
                     'station_id' => $station->id,
-                    'value' => random_int(20, 100),
+                    'value' => $newNumber,
                     'measured_at' => $date->toDateTimeString(),
-                    'type'=>'App\Humidity'
+                    'type' => 'App\Humidity'
                 ];
+
+                if (count($data[1])) {
+                    $prev = $data[1][count($data[1]) - 1]['value'];
+                    dump($prev);
+//                    if($prev>25 && $prev < 95) {
+                    $newNumber = random_int($prev - 10, $prev + 10);
+//                    }
+//                    $newNumber =random_int($prev-5, $prev+5);
+                } else {
+                    $newNumber = random_int(20,100);
+
+                }
                 $data[1][] = [
                     'station_id' => $station->id,
-                    'value' => random_int(20, 100),
+                    'value' => $newNumber,
                     'measured_at' => $date->toDateTimeString(),
                     'type'=>'App\Precipitation'
 
 
                 ];
+
+                if (count($data[2])) {
+                    $prev = $data[2][count($data[2]) - 1]['value'];
+                    dump($prev);
+//                    if($prev>25 && $prev < 95) {
+                    $newNumber = random_int($prev - 10, $prev + 10);
+//                    }
+//                    $newNumber =random_int($prev-5, $prev+5);
+                } else {
+                    $newNumber = random_int(10,20);
+
+                }
+
                 $data[2][] = [
                     'station_id' => $station->id,
-                    'value' => random_int(-50, 50),
+                    'value' => $newNumber,
                     'measured_at' => $date->toDateTimeString(),
                     'type'=>'App\AirTemperature'
 
                 ];
+
+                if (count($data[3])) {
+                    $prev = $data[3][count($data[3]) - 1]['value'];
+                    dump($prev);
+//                    if($prev>25 && $prev < 95) {
+                    $newNumber = random_int($prev - 10, $prev + 10);
+//                    }
+//                    $newNumber =random_int($prev-5, $prev+5);
+                } else {
+                    $newNumber = random_int(10,15);
+
+                }
                 $data[3][] = [
                     'station_id' => $station->id,
-                    'value' => random_int(-20, 60),
+                    'value' => $newNumber,
                     'measured_at' => $date->toDateTimeString(),
                     'type'=>'App\RoadTemperature'
 
 
                 ];
+
+                if (count($data[4])) {
+                    $prev = $data[4][count($data[4]) - 1]['value'];
+                    dump($prev);
+//                    if($prev>25 && $prev < 95) {
+                    $newNumber = random_int($prev - 10, $prev + 10);
+//                    }
+//                    $newNumber =random_int($prev-5, $prev+5);
+                } else {
+                    $newNumber = random_int(600,800);
+
+                }
                 $data[4][] = [
                     'station_id' => $station->id,
-                    'value' => random_int(100, 1000),
+                    'value' => $newNumber,
                     'measured_at' => $date->toDateTimeString(),
                     'type'=>'App\AtmospherePressure'
 

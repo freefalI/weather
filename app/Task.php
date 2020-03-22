@@ -79,4 +79,9 @@ class Task extends Model
 //
 //        return $mapPopupContent;
 //    }
+    public function problemType()
+    {
+        return $this->hasOne(RoadProblemType::class,'id','problem_type_id');
+    }
 }
+

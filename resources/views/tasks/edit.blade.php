@@ -13,7 +13,7 @@
                     <label class="control-label text-primary">{{ __('task.description') }}</label>
                     <p>{{ $task->description }}</p>
                     <label class="control-label text-primary">{{ __('task.comment') }}</label>
-                    <p>{{ $task->address }}</p>
+                    <p>{{ $task->comment }}</p>
                     <label class="control-label text-primary">{{ __('task.type') }}</label>
                     <p>{{ $task->problemType->name  }}</p>
                     {!! $errors->first('task_id', '<span class="invalid-feedback" role="alert">:message</span>') !!}
@@ -23,7 +23,7 @@
                 <div class="card-footer">
                     <form method="POST" action="{{ route('tasks.destroy', $task) }}" accept-charset="UTF-8" onsubmit="return confirm(&quot;{{ __('app.delete_confirm') }}&quot;)" class="del-form float-right" style="display: inline;">
                         {{ csrf_field() }} {{ method_field('delete') }}
-                        <input name="station_id" type="hidden" value="{{ $task->id }}">
+                        <input name="task_id" type="hidden" value="{{ $task->id }}">
                         <button type="submit" class="btn btn-danger">{{ __('app.delete_confirm_button') }}</button>
                     </form>
                     <a href="{{ route('tasks.edit', $task) }}" class="btn btn-link">{{ __('app.cancel') }}</a>

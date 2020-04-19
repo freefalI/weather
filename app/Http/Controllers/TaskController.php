@@ -115,7 +115,6 @@ class TaskController extends Controller
     public function destroy(Request $request, Task $task)
     {
         $this->authorize('delete', $task);
-
         $request->validate(['task_id' => 'required']);
 
         if ($request->get('task_id') == $task->id && $task->delete()) {

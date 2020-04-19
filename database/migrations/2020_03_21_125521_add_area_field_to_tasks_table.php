@@ -18,7 +18,7 @@ class AddAreaFieldToTasksTable extends Migration
             $table->dropColumn('latitude2');
             $table->dropColumn('longitude1');
             $table->dropColumn('longitude2');
-            $table->string('area')->nullable()->after('problem_type_id');
+            $table->string('area',10000)->nullable()->after('problem_type_id');
         });
 
     }

@@ -15,10 +15,7 @@ class TaskSeeder extends Seeder
            'description'=>'Problem description',
            'comment'=>'comment',
            'problem_type_id'=>\App\RoadProblemType::first()->id,
-           'latitude1'=>\App\Station::find(1)->latitude,
-           'latitude2'=>\App\Station::find(2)->latitude,
-           'longitude1'=>\App\Station::find(1)->longitude,
-           'longitude2'=>\App\Station::find(2)->longitude,
+//           'area'=>'[]',
 //           'creator_id'=>auth()->user()->id,
            'creator_id'=>\App\User::first()->id,
        ]);

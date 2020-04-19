@@ -30,6 +30,7 @@ Route::get('/test', 'TestController@index');
  * Stations Routes
  */
 Route::get('/stations_list', 'MapController@index')->name('station_map.index');
+Route::get('/tasks_map', 'TaskController@tasksMap')->name('tasks.map');
 Route::resource('stations', 'StationController');
 Route::resource('tasks', 'TaskController');
 

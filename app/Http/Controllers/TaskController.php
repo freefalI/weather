@@ -123,4 +123,10 @@ class TaskController extends Controller
 
         return back();
     }
+
+    public function tasksMap(Request $request)
+    {
+        $areas ='['. implode(',',Task::pluck('area')->filter(function($el){return $el;})->toArray()).']';
+        return view('tasks.map',compact('areas'));
+    }
 }

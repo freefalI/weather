@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\RoadProblemType;
+use App\Station;
 use App\Task;
-use App\WeatherCharacteristic;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -28,9 +29,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', new Station);
-
-        return view('stations.create');
+        $this->authorize('create', new Task());
+        $problemTypes = RoadProblemType::get();
+        return view('tasks.create', ['problemTypes' => $problemTypes]);
     }
 
     /**
@@ -41,100 +42,84 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', new Station);
+        $this->authorize('create', new Task);
 
-        $newStation = $request->validate([
-            'name'      => 'required|max:60',
-            'address'   => 'nullable|max:255',
-            'latitude'  => 'nullable|required_with:longitude|max:15',
-            'longitude' => 'nullable|required_with:latitude|max:15',
+        $newTask = $request->validate([
+            'description' => 'required|max:60',
+            'comment' => 'nullable|max:255',
+            'area' => 'required|json',
+            'problem_type_id' => 'required|int',
         ]);
-        $newStation['creator_id'] = auth()->id();
+        $newTask['creator_id'] = auth()->id();
 
-        $station = Station::create($newStation);
+        $task = Task::create($newTask);
 
-        return redirect()->route('stations.show', $station);
+        return redirect()->route('tasks.show', $task);
     }
 
     /**
      * Display the specified task.
      *
-     * @param  \App\Station  $station
+     * @param \App\Task $task
      * @return \Illuminate\View\View
      */
-    public function show(Station $station)
+    public function show(Task $task)
     {
-        start_measure('render', 'Time for rendering');
-
-        $res = WeatherCharacteristic::where('station_id', $station->id)->get();
-        stop_measure('render');
-
-        start_measure('render1', 'Time for rendering2');
-        $weatherData = $res->groupBy('type');//->map(function ($val){return $val->toArray();});
-//        dump($weatherData);
-        stop_measure('render1');
-        start_measure('render3', 'Time for rendering3');
-
-//        $res =Humidity::where('station_id',$station->id)->get();
-//        $res =AtmospherePressure::where('station_id',$station->id)->get();
-//        $res =AirTemperature::where('station_id',$station->id)->get();
-//        $res =RoadTemperature::where('station_id',$station->id)->get();
-//        $res =Precipitation::where('station_id',$station->id)->get();
-//        stop_measure('render3');
-        $dataForCharts = [];
-        return view('stations.show', ['station'=>$station,'measureData'=>$weatherData]);
+        $center = Station::first();
+        return view('tasks.show', ['task' => $task, 'center' => $center]);
     }
 
     /**
-     * Show the form for editing the specified station.
+     * Show the form for editing the specified task.
      *
-     * @param  \App\Station  $station
+     * @param \App\Task $task
      * @return \Illuminate\View\View
      */
-    public function edit(Station $station)
+    public function edit(Task $task)
     {
-        $this->authorize('update', $station);
-
-        return view('stations.edit', compact('station'));
+        $this->authorize('update', $task);
+        $center = Station::first();
+        $problemTypes = RoadProblemType::get();
+        return view('tasks.edit', compact('task', 'center', 'problemTypes'));
     }
 
     /**
-     * Update the specified station in storage.
+     * Update the specified task in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Station  $station
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Task $task
      * @return \Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Station $station)
+    public function update(Request $request, Task $task)
     {
-        $this->authorize('update', $station);
+        $this->authorize('update', $task);
 
-        $stationData = $request->validate([
-            'name'      => 'required|max:60',
-            'address'   => 'nullable|max:255',
-            'latitude'  => 'nullable|required_with:longitude|max:15',
-            'longitude' => 'nullable|required_with:latitude|max:15',
+        $taskData = $request->validate([
+            'description' => 'required|max:60',
+            'comment' => 'nullable|max:255',
+            'area' => 'required|json',
+            'problem_type_id' => 'required|int',
         ]);
-        $station->update($stationData);
+        $task->update($taskData);
 
-        return redirect()->route('stations.show', $station);
+        return redirect()->route('tasks.show', $task);
     }
 
     /**
-     * Remove the specified station from storage.
+     * Remove the specified task from storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Station  $station
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Task $task
      * @return \Illuminate\Routing\Redirector
      */
-    public function destroy(Request $request, Station $station)
+    public function destroy(Request $request, Task $task)
     {
-        $this->authorize('delete', $station);
+        $this->authorize('delete', $task);
 
-        $request->validate(['station_id' => 'required']);
+        $request->validate(['task_id' => 'required']);
 
-        if ($request->get('station_id') == $station->id && $station->delete()) {
-            return redirect()->route('stations.index');
+        if ($request->get('task_id') == $task->id && $task->delete()) {
+            return redirect()->route('tasks.index');
         }
 
         return back();

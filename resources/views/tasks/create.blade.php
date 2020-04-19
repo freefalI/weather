@@ -32,7 +32,7 @@
                     </div>
 
 
-                    <input id="area" type="text" class="form-control{{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area', request('area')) }}" >
+                    <input hidden id="area" type="text" class="form-control{{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area', request('area')) }}" >
 
                     {!! $errors->first('area', '<span class="invalid-feedback" role="alert">:message</span>') !!}
 
@@ -71,7 +71,7 @@
     var mapCenter = [{{ request('latitude1', config('leaflet.map_center_latitude')) }}, {{ request('longitude1', config('leaflet.map_center_longitude')) }}];
    // mapCenter=[-104.99404, 39.75621];
     var map = L.map('mapid').setView(mapCenter, {{ config('leaflet.zoom_level') }});
-    // var map = L.map('mapid').setView([51.505, -0.09], 13);
+   //  var map = L.map('mapid').setView([51.505, -0.09], 13);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
@@ -100,21 +100,18 @@
     //         "coordinates": [-104.99404, 39.75621]
     //     }
     // };
-    //
+    var oldArea ='{!!old('area', request('area')) !!}';
+    if(oldArea)    {
+        L.geoJSON( JSON.parse(oldArea)).addTo(map);
+    }
+
     // var oldArea = JSON.parse('[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[30.55624,50.463296]}},{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[30.510406,50.467011],[30.510406,50.472365],[30.523281,50.472365],[30.523281,50.467011],[30.510406,50.467011]]]}},{"type":"Feature","properties":{},"geometry":{"type":"Polygon","coordinates":[[[30.535812,50.451711],[30.535641,50.45193],[30.530577,50.449635],[30.530577,50.449635],[30.542765,50.444114],[30.542765,50.444114],[30.542078,50.450236],[30.542078,50.450236],[30.535812,50.451711]]]}},{"type":"Feature","properties":{},"geometry":{"type":"LineString","coordinates":[[30.521393,50.448979],[30.521393,50.448979],[30.551262,50.432798],[30.551262,50.432798],[30.585938,50.456411],[30.585938,50.456411]]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[30.479164,50.472365]}},{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[30.526543,50.477827]}}]')
-    // L.geoJSON(  oldArea ).addTo(map);
     // L.geoJSON(  oldArea[1]  ).addTo(map);
 // var map = L.map('map', {drawControl: true}).setView([51.505, -0.09], 13);
     // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     // }).addTo(map);
     //
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    var marker = L.marker(mapCenter).addTo(map);
-
     function updateMarker(lat, lng) {
         marker
         .setLatLng([lat, lng])
@@ -130,70 +127,21 @@
         // $('#longitude1').val(longitude);
         // updateMarker(latitude, longitude);
     });
-
-    // map.on('draw:created', function (e) {
-    //     console.log(e)
-    //     var layers = e.layers;
-    //     layers.eachLayer(function (layer) {
-    //         console.log(layer)
-    //         //do whatever you want; most likely save back to db
-    //     });
-    // });
-    var selectedAreas=[];
     map.on(L.Draw.Event.CREATED, function (e) {
         var type = e.layerType,
             layer = e.layer;
         if (type === 'marker') {
             // Do marker specific actions
         }
-        // Do whatever else you need to. (save to db; add to map etc)
         map.addLayer(layer);
-        console.log(layer);
-        var shape = layer.toGeoJSON()
-        // layer.properties = 23;
-        shape.properties.id =  Math.random().toString(36).substr(2, 9);
-        var shape_for_db = JSON.stringify(shape);
-        console.log(shape);
-        console.log(shape_for_db);
-        selectedAreas.push(shape);
-        $('#area').val(JSON.stringify(selectedAreas));
         drawnItems.addLayer(layer)
-        console.log(drawnItems.layers)
-        console.log(drawnItems.toGeoJSON())
-        drawnItems._layers.forEach(function (layer) {
-            var shape = layer.toGeoJSON()
-            console.log(shape);
-            //do whatever you want; most likely save back to db
-        });
+        $('#area').val(JSON.stringify(drawnItems.toGeoJSON()));
     });
-    // map.on('draw:created', function (e) {
-    //     var type = e.layerType;
-    //     var layer = e.layer;
-    //
-    //     var shape = layer.toGeoJSON()
-    //     var shape_for_db = JSON.stringify(shape);
-    //     selectedAreas.push(shape);
-    //
-    // });
-
     map.on('draw:edited', function (e) {
-        var layers = e.layers;
-        layers.eachLayer(function (layer) {
-            //do whatever you want; most likely save back to db
-        });
+        $('#area').val(JSON.stringify(drawnItems.toGeoJSON()));
     });
-
     map.on('draw:deleted', function (e) {
-        var layers = e.layers;
-        layers.eachLayer(function (layer) {
-        //     //do whatever you want; most likely save back to db
-            selectedAreas.forEach(function(el){
-                // console.log(el)
-                // console.log(selectedAreas[el])
-                if(el.properties.id===layer.id)
-                    console.log('found')
-            })
-        });
+        $('#area').val(JSON.stringify(drawnItems.toGeoJSON()));
     });
 
     var updateMarkerByInputs = function() {

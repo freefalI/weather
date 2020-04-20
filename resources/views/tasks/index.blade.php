@@ -6,7 +6,7 @@
     <div class="mb-3">
         <div class="float-right">
             @can('create', new App\Station)
-                <a href="{{ route('stations.create') }}" class="btn btn-success">{{ __('tasks.create') }}</a>
+                <a href="{{ route('tasks.create') }}" class="btn btn-success">{{ __('tasks.create') }}</a>
             @endcan
         </div>
         <h1 class="page-title">{{ __('tasks.list') }} <small>{{ __('app.total') }} : {{ $tasks->total() }} {{ __('tasks.tasks') }}</small></h1>
@@ -22,7 +22,7 @@
                             <input placeholder="{{ __('tasks.search_text') }}" name="q" type="text" id="q" class="form-control mx-sm-2" value="{{ request('q') }}">
                         </div>
                         <input type="submit" value="{{ __('tasks.search') }}" class="btn btn-secondary">
-                        <a href="{{ route('stations.index') }}" class="btn btn-link">{{ __('app.reset') }}</a>
+                        <a href="{{ route('tasks.index') }}" class="btn btn-link">{{ __('app.reset') }}</a>
                     </form>
                 </div>
                 <table class="table table-sm table-responsive-sm">
@@ -32,8 +32,6 @@
                         <th>{{ __('tasks.description') }}</th>
                         <th>{{ __('tasks.type') }}</th>
                         <th>{{ __('tasks.comment') }}</th>
-                        <th>{{ __('tasks.latitude') }}</th>
-                        <th>{{ __('tasks.longitude') }}</th>
                         <th class="text-center">{{ __('app.action') }}</th>
                     </tr>
                     </thead>
@@ -44,14 +42,8 @@
                             <td>{{ $task->description }}</td>
                             <td>{!! $task->problemType->name !!}</td>
                             <td>{{ $task->comment }}</td>
-                            <td>{{ $task->latitude1 }}</td>
-                            <td>{{ $task->longitude1 }}</td>
-
-
-
-
                             <td class="text-center">
-                                <a href="{{ route('stations.show', $task) }}" id="show-station-{{ $task->id }}">{{ __('app.show') }}</a>
+                                <a href="{{ route('tasks.show', $task) }}" id="show-station-{{ $task->id }}">{{ __('app.show') }}</a>
                             </td>
                         </tr>
                     @endforeach

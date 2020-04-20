@@ -9,7 +9,6 @@
             <div class="card-header">{{ __('task.create') }}</div>
             <form method="POST" action="{{ route('tasks.store') }}" accept-charset="UTF-8">
                 {{ csrf_field() }}
-                @dump($errors)
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name" class="control-label">{{ __('task.description') }}</label>

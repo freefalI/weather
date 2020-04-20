@@ -52,19 +52,26 @@
     // }
     axios.get('{{ route('api.tasks.index') }}')
         .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             var area;
             for (var dataKey in response.data.collection) {
-                console.log(response.data);
+                // console.log(response.data);
                 var item;
                 for (var dataKey in response.data.collection) {
                     item = response.data.collection[dataKey];
                     var decodedArea  = JSON.parse(item.area)
                     if(!decodedArea)continue;
-                    decodedArea.features.forEach(function(layer){layer.properties.title =item.description;})
+                    decodedArea.features.forEach(function(layer){
+                        layer.properties.title =item.description;
+                        layer.properties.subtitle =item.comment;
+
+                    })
                     L.geoJSON(decodedArea).bindPopup(function (layer) {
                         console.log(layer.feature.properties)
-                        return layer.feature.properties.title ;
+                        // return layer.feature.properties.title ;
+                        return '<b>'+layer.feature.properties.title + '</b><br>'+layer.feature.properties.subtitle+
+                            '<br><a href="{{ route('tasks.index') }}/1">Open task</a>'
+
                     }).addTo(map);
                 }
             }

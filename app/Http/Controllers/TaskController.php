@@ -126,7 +126,8 @@ class TaskController extends Controller
 
     public function tasksMap(Request $request)
     {
-        $areas ='['. implode(',',Task::pluck('area')->filter(function($el){return $el;})->toArray()).']';
-        return view('tasks.map',compact('areas'));
+        $tasks =Task::all();
+        $areas ='['. implode(',',$tasks->map->area->filter(function($el){return $el;})->toArray()).']';
+        return view('tasks.map',compact('areas','tasks'));
     }
 }

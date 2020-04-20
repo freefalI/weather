@@ -23,7 +23,7 @@
                 @if(auth()->check())
                     <a href="{{ route('tasks.index') }}" class="btn btn-link">{{ __('task.back_to_index') }}</a>
                 @else
-                    <a href="{{ route('tasks_map.index') }}" class="btn btn-link">{{ __('task.back_to_index') }}</a>
+                    <a href="{{ route('tasks.map') }}" class="btn btn-link">{{ __('task.back_to_index') }}</a>
                 @endif
             </div>
         </div>

@@ -43,6 +43,9 @@
 </div>
 <br>
 <br>
+@if(!$measureData->count())
+No data for charts
+@endif
 <div class="row  justify-content-center" >
     <div class="col-md-8">
         <canvas id="myChart" height="250" ></canvas>
@@ -91,92 +94,57 @@
             purple: 'rgb(153, 102, 255)',
             grey: 'rgb(201, 203, 207)'
         };
-        var config = {
-            type: 'line',
-            data: {
-                labels:{!! json_encode($measureData['App\Humidity']->map(function ($val){return $val->measured_at/*Carbon\Carbon::parse($val->measured_at)->format('l jS \\of F Y h:i:s A')*/;})->toArray())!!},
-                // options: {
-                //     scales: {
-                //         yAxes: [{
-                //             id: 'A',
-                //             type: 'linear',
-                //             position: 'left',
-                //             // ticks: {
-                //             //     max: 300,
-                //             //     min: 5
-                //             // }
-                //         }, {
-                //             id: 'B',
-                //             type: 'linear',
-                //             position: 'right',
-                //             ticks: {
-                //                 max: 1000,
-                //                 min: 1
-                //             }
-                //         }]
-                //     }
-                // },
+        @if($measureData->count())
+            var config = {
+                type: 'line',
+                data: {
+                   // labels:{!! json_encode($measureData['App\Humidity']->map(function ($val){return $val->measured_at/*Carbon\Carbon::parse($val->measured_at)->format('l jS \\of F Y h:i:s A')*/;})->toArray())!!},
+                    // options: {
+                    //     scales: {
+                    //         yAxes: [{
+                    //             id: 'A',
+                    //             type: 'linear',
+                    //             position: 'left',
+                    //             // ticks: {
+                    //             //     max: 300,
+                    //             //     min: 5
+                    //             // }
+                    //         }, {
+                    //             id: 'B',
+                    //             type: 'linear',
+                    //             position: 'right',
+                    //             ticks: {
+                    //                 max: 1000,
+                    //                 min: 1
+                    //             }
+                    //         }]
+                    //     }
+                    // },
 
-                datasets: [{
-                    label: 'Humidity',
-                    backgroundColor: window.chartColors.red,
-                    borderColor: window.chartColors.red,
-                    data: {{json_encode($measureData['App\Humidity']->map(function ($val){return (float)$val->value;})->toArray())}},
-                        // randomScalingFactor(),
-                        // randomScalingFactor(),
-                        // randomScalingFactor(),
-                        // randomScalingFactor(),
-                        // randomScalingFactor(),
-                        // randomScalingFactor(),
-                        // randomScalingFactor()
-                    // ],
-                    fill: false,
-                    yAxesID: 'A',
-                },
-                    {
-                    label: 'Precipitation',
-                    fill: false,
-                    yAxesID: 'A',
-                    backgroundColor: window.chartColors.green,
-                    borderColor: window.chartColors.green,
-                    data:  {{json_encode($measureData['App\Precipitation']->map(function ($val){return (float)$val->value;})->toArray())}},
-                        // [
-                    //     randomScalingFactor(),
-                    //     randomScalingFactor(),
-                    //     randomScalingFactor(),
-                    //     randomScalingFactor(),
-                    //     randomScalingFactor(),
-                    //     randomScalingFactor(),
-                    //     randomScalingFactor()
-                    // ],
-                },
-                    {{--{--}}
-                    {{--    label: 'AtmospherePressure',--}}
-                    {{--    fill: false,--}}
-                    {{--    yAxesID: 'B',--}}
-
-                    {{--    backgroundColor: window.chartColors.purple,--}}
-                    {{--    borderColor: window.chartColors.purple,--}}
-                    {{--    data:  {{json_encode($measureData['App\AtmospherePressure']->map(function ($val){return (float)$val->value;})->toArray())}},--}}
-                    {{--    // [--}}
-                    {{--    //     randomScalingFactor(),--}}
-                    {{--    //     randomScalingFactor(),--}}
-                    {{--    //     randomScalingFactor(),--}}
-                    {{--    //     randomScalingFactor(),--}}
-                    {{--    //     randomScalingFactor(),--}}
-                    {{--    //     randomScalingFactor(),--}}
-                    {{--    //     randomScalingFactor()--}}
-                    {{--    // ],--}}
-                    {{--},--}}
-                    {
-                        label: 'AirTemperature',
+                    datasets: [{
+                        label: 'Humidity',
+                        backgroundColor: window.chartColors.red,
+                        borderColor: window.chartColors.red,
+                        data: {{json_encode($measureData['App\Humidity']->map(function ($val){return (float)$val->value;})->toArray())}},
+                            // randomScalingFactor(),
+                            // randomScalingFactor(),
+                            // randomScalingFactor(),
+                            // randomScalingFactor(),
+                            // randomScalingFactor(),
+                            // randomScalingFactor(),
+                            // randomScalingFactor()
+                        // ],
                         fill: false,
                         yAxesID: 'A',
-
-                        backgroundColor: window.chartColors.grey,
-                        borderColor: window.chartColors.grey,
-                        data:  {{json_encode($measureData['App\AirTemperature']->map(function ($val){return (float)$val->value;})->toArray())}},
-                        // [
+                    },
+                        {
+                        label: 'Precipitation',
+                        fill: false,
+                        yAxesID: 'A',
+                        backgroundColor: window.chartColors.green,
+                        borderColor: window.chartColors.green,
+                        data:  {{json_encode($measureData['App\Precipitation']->map(function ($val){return (float)$val->value;})->toArray())}},
+                            // [
                         //     randomScalingFactor(),
                         //     randomScalingFactor(),
                         //     randomScalingFactor(),
@@ -186,61 +154,98 @@
                         //     randomScalingFactor()
                         // ],
                     },
-                    {
-                        label: 'RoadTemperature',
-                        fill: false,
-                        yAxesID: 'A',
+                        {{--{--}}
+                        {{--    label: 'AtmospherePressure',--}}
+                        {{--    fill: false,--}}
+                        {{--    yAxesID: 'B',--}}
 
-                        backgroundColor: window.chartColors.orange,
-                        borderColor: window.chartColors.orange,
-                        data:  {{json_encode($measureData['App\RoadTemperature']->map(function ($val){return (float)$val->value;})->toArray())}},
-                        // [
-                        //     randomScalingFactor(),
-                        //     randomScalingFactor(),
-                        //     randomScalingFactor(),
-                        //     randomScalingFactor(),
-                        //     randomScalingFactor(),
-                        //     randomScalingFactor(),
-                        //     randomScalingFactor()
-                        // ],
+                        {{--    backgroundColor: window.chartColors.purple,--}}
+                        {{--    borderColor: window.chartColors.purple,--}}
+                        {{--    data:  {{json_encode($measureData['App\AtmospherePressure']->map(function ($val){return (float)$val->value;})->toArray())}},--}}
+                        {{--    // [--}}
+                        {{--    //     randomScalingFactor(),--}}
+                        {{--    //     randomScalingFactor(),--}}
+                        {{--    //     randomScalingFactor(),--}}
+                        {{--    //     randomScalingFactor(),--}}
+                        {{--    //     randomScalingFactor(),--}}
+                        {{--    //     randomScalingFactor(),--}}
+                        {{--    //     randomScalingFactor()--}}
+                        {{--    // ],--}}
+                        {{--},--}}
+                        {
+                            label: 'AirTemperature',
+                            fill: false,
+                            yAxesID: 'A',
+
+                            backgroundColor: window.chartColors.grey,
+                            borderColor: window.chartColors.grey,
+                            data:  {{json_encode($measureData['App\AirTemperature']->map(function ($val){return (float)$val->value;})->toArray())}},
+                            // [
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor()
+                            // ],
+                        },
+                        {
+                            label: 'RoadTemperature',
+                            fill: false,
+                            yAxesID: 'A',
+
+                            backgroundColor: window.chartColors.orange,
+                            borderColor: window.chartColors.orange,
+                            data:  {{json_encode($measureData['App\RoadTemperature']->map(function ($val){return (float)$val->value;})->toArray())}},
+                            // [
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor(),
+                            //     randomScalingFactor()
+                            // ],
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Chart.js Line Chart'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Month'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Value'
+                            }
+                        }]
                     }
-                ]
-            },
-            options: {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Chart.js Line Chart'
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Month'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Value'
-                        }
-                    }]
                 }
-            }
-        };
+            };
 
-        var ctx = document.getElementById('myChart').getContext('2d');
-        new Chart(ctx, config);
+            var ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, config);
+        @endif
     });
 </script>
 @endpush

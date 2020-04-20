@@ -17,6 +17,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('styles')
     @stack('styles_stack')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
 </head>
 <body>
 <div id="app">
@@ -38,7 +39,20 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
-                    <li class="nav-item"><a class="nav-link" href="{{ route('station_map.index') }}">{{ __('menu.stations') }}</a></li>
+                    <li class="nav-item"><a class="nav-link {{Route::is('station_map.index') ? 'active': ''}}" href="{{ route('station_map.index') }}">{{ __('menu.stations') }}</a></li>
+
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link {{Route::is('stations.index') ? 'active': ''}}" href="{{ route('stations.index') }}">{{ __('station.list') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{Route::is('tasks.index') ? 'active': ''}}" href="{{ route('tasks.index') }}">{{ __('tasks.list') }}</a>
+                        </li>
+                    @endauth
+
+                    <li class="nav-item">
+                        <a class="nav-link {{Route::is('tasks.map') ? 'active': ''}}" href="{{ route('tasks.map') }}">{{ __('menu.task_map') }}</a>
+                    </li>
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -48,14 +62,9 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         </li>
-                    @else
+                    @endguest
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('stations.index') }}">{{ __('station.list') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tasks.index') }}">{{ __('tasks.list') }}</a>
-                        </li>
+                    @auth
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -73,7 +82,7 @@
                                 </form>
                             </div>
                         </li>
-                    @endguest
+                    @endauth
                 </ul>
             </div>
         </div>

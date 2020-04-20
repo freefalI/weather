@@ -42,16 +42,39 @@
     // });
     // map.addControl(drawControl);
 
-    var areas =JSON.parse('{!!$areas!!}');
 
-    if (areas) {
-        areas.forEach(function (el) {
-            L.geoJSON(el).addTo(map);
+    // if (!areas) {
+    //     areas.forEach(function (el) {
+    //         L.geoJSON(el).bindPopup(function (layer) {
+    //             return '234';
+    //         }).addTo(map);
+    //     });
+    // }
+    axios.get('{{ route('api.tasks.index') }}')
+        .then(function (response) {
+            console.log(response.data);
+            var area;
+            for (var dataKey in response.data.collection) {
+                console.log(response.data);
+                var item;
+                for (var dataKey in response.data.collection) {
+                    item = response.data.collection[dataKey];
+                    var decodedArea  = JSON.parse(item.area)
+                    if(!decodedArea)continue;
+                    decodedArea.features.forEach(function(layer){layer.properties.title =item.description;})
+                    L.geoJSON(decodedArea).bindPopup(function (layer) {
+                        console.log(layer.feature.properties)
+                        return layer.feature.properties.title ;
+                    }).addTo(map);
+                }
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
         });
-    }
 
 
- /*   axios.get('{{ route('api.stations.index') }}')
+   /* axios.get('{{ route('api.stations.index') }}')
     .then(function (response) {
         console.log(response.data);
         L.geoJSON(response.data, {
@@ -67,7 +90,7 @@
         console.log(error);
     });*/
 
-    @can('create', new App\Task())
+    @can('create-commented', new App\Task())
     var theMarker;
 
     map.on('click', function(e) {

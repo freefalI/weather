@@ -98,28 +98,28 @@ No data for charts
             var config = {
                 type: 'line',
                 data: {
-                   // labels:{!! json_encode($measureData['App\Humidity']->map(function ($val){return $val->measured_at/*Carbon\Carbon::parse($val->measured_at)->format('l jS \\of F Y h:i:s A')*/;})->toArray())!!},
-                    // options: {
-                    //     scales: {
-                    //         yAxes: [{
-                    //             id: 'A',
-                    //             type: 'linear',
-                    //             position: 'left',
-                    //             // ticks: {
-                    //             //     max: 300,
-                    //             //     min: 5
-                    //             // }
-                    //         }, {
-                    //             id: 'B',
-                    //             type: 'linear',
-                    //             position: 'right',
-                    //             ticks: {
-                    //                 max: 1000,
-                    //                 min: 1
-                    //             }
-                    //         }]
-                    //     }
-                    // },
+                   labels:{!! json_encode($measureData['App\Humidity']->map(function ($val){return $val->measured_at/*Carbon\Carbon::parse($val->measured_at)->format('l jS \\of F Y h:i:s A')*/;})->toArray())!!},
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                id: 'A',
+                                type: 'linear',
+                                position: 'left',
+                                // ticks: {
+                                //     max: 300,
+                                //     min: 5
+                                // }
+                            }, {
+                                id: 'B',
+                                type: 'linear',
+                                position: 'right',
+                                ticks: {
+                                    max: 1000,
+                                    min: 1
+                                }
+                            }]
+                        }
+                    },
 
                     datasets: [{
                         label: 'Humidity',

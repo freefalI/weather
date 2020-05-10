@@ -53,6 +53,9 @@
                     <li class="nav-item">
                         <a class="nav-link {{Route::is('tasks.map') ? 'active': ''}}" href="{{ route('tasks.map') }}">{{ __('menu.task_map') }}</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{Route::is('stats') ? 'active': ''}}" href="{{ route('stats') }}">{{ __('stats.stats') }}</a>
+                    </li>
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

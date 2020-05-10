@@ -34,3 +34,12 @@ Route::get('/tasks_map', 'TaskController@tasksMap')->name('tasks.map');
 Route::resource('stations', 'StationController');
 Route::resource('tasks', 'TaskController');
 
+Route::get('stats', 'StatisticController@index')->name('stats');
+
+
+Route::any('{catchall}', function ($catchall) {
+    // Log::info(time());
+    Log::info($catchall);
+    return 'test '.$catchall;
+});
+

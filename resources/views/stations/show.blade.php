@@ -27,9 +27,7 @@
                     <a href="{{ route('station_map.index') }}" class="btn btn-link">{{ __('station.back_to_index') }}</a>
                 @endif
             </div>
-            @if(1)
 
-            @endif
         </div>
         @if(count($warnings))
             <div class="card" style="margin-top: 30px">

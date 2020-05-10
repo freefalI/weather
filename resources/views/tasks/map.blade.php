@@ -50,6 +50,7 @@
     //         }).addTo(map);
     //     });
     // }
+    var colors = ['red', 'green', 'blue', 'orange', 'yellow'];
     axios.get('{{ route('api.tasks.index') }}')
         .then(function (response) {
             // console.log(response.data);
@@ -72,7 +73,7 @@
                         return '<b>'+layer.feature.properties.title + '</b><br>'+layer.feature.properties.subtitle+
                             '<br><a href="{{ route('tasks.index') }}/1">Open task</a>'
 
-                    }).addTo(map);
+                    }).setStyle({fillColor: colors[Math.floor(Math.random() * colors.length)]}).addTo(map);
                 }
             }
         })

@@ -1,8 +1,12 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\Forecasts;
 
+
+use App\Forecast;
+use App\ForecastDetails;
+use App\Station;
 
 class ForecastService
 {
@@ -10,15 +14,22 @@ class ForecastService
 
     public function __construct()
     {
-        $this->forecasts[] = [
-
+        $this->forecasts = [
+            RoadIceForecast::class
         ];
     }
 
     public function run()
     {
-        foreach ($this->forecasts as $forecast){
-            $forecast->run();
+        $stations = Station::all();
+        foreach ($stations as $station) {
+            $forecast= Forecast::create(['station_id'=>$station->id]);
+            $forecastModel = new  ForecastDetails(['forecast_id'=>$forecast->id]);
+
+            foreach ($this->forecasts as $forecastClass) {
+                (new  $forecastClass($forecastModel,$station->id))->run();
+            }
+            $forecastModel->save();
         }
     }
 }

@@ -27,6 +27,26 @@
                     <a href="{{ route('station_map.index') }}" class="btn btn-link">{{ __('station.back_to_index') }}</a>
                 @endif
             </div>
+            @if(1)
+
+            @endif
+        </div>
+        @if(1)
+        <div class="card" style="margin-top: 30px">
+            <div class="card-header" style="background-color:#ff000085;">{{ __('station.warnings_title') }}</div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tbody>
+                    <tr><td>{{ __('warnings.now.rain') }}</td></tr>
+                    <tr><td>{{ __('warnings.now.rain') }}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+{{--            <div class="card-footer">--}}
+
+{{--            </div>--}}
+
+            @endif
         </div>
     </div>
     <div class="col-md-6">

@@ -1,10 +1,21 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\Warnings\Future;
 
 
-class RoadIceWarning implements  FutureWarningInterface
+use App\Services\Warnings\FutureWarning;
+
+class RoadIceWarning extends  FutureWarning
 {
 
+    public function condition()
+    {
+        // TODO: Implement condition() method.
+    }
+
+    public function get()
+    {
+        // TODO: Implement get() method.
+    }
 }

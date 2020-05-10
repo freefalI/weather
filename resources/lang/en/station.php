@@ -13,6 +13,7 @@ return [
     'empty'         => 'Station is empty.',
     'back_to_show'  => 'Back to Station Detail',
     'back_to_index' => 'Back to Station List',
+    'warnings_title' => 'Warnings',
 
     // Actions
     'create'         => 'Create new Station',

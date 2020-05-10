@@ -1,10 +1,22 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Services\Warnings\Present;
 
 
-class RainWarning implements  PresentWarningInterface
+use App\Services\Warnings\PresentWarning;
+
+class RainWarning  extends PresentWarning
 {
+    private $title ='now.rain';
 
+    public function condition()
+    {
+        // TODO: Implement condition() method.
+    }
+
+    public function get()
+    {
+        // TODO: Implement get() method.
+    }
 }

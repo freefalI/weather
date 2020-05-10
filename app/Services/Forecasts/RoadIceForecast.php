@@ -13,9 +13,9 @@ class RoadIceForecast extends AbstractForecast
     {
         //conditions
         // рост атмосферного давления, понижение температуры воздуха, понижение относительной влажности воздуха
-        $pressure = AtmospherePressure::where('station_id', $this->stationId)->latest('measured_at')->take(10)->get();
-        $airTemperature = AirTemperature::where('station_id', $this->stationId)->latest('measured_at')->take(10)->get();
-        $humidity = Humidity::where('station_id', $this->stationId)->latest('measured_at')->take(10)->get();
+        $pressure = AtmospherePressure::where('station_id', $this->stationId)->latest('measured_at')->take(10)->get()->reverse();
+        $airTemperature = AirTemperature::where('station_id', $this->stationId)->latest('measured_at')->take(10)->get()->reverse();
+        $humidity = Humidity::where('station_id', $this->stationId)->latest('measured_at')->take(10)->get()->reverse();
 
         if ($this->isGrowing($pressure) &&
             $this->isDecaying($airTemperature) &&

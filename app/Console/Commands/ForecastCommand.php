@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Humidity;
-use App\Services\ForecastService;
+use App\Services\Forecasts\ForecastService;
 use Illuminate\Console\Command;
 
 class ForecastCommand extends Command

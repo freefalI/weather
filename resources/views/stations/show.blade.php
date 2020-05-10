@@ -237,7 +237,7 @@ No data for charts
                     responsive: true,
                     title: {
                         display: true,
-                        text: 'Chart.js Line Chart'
+                        text: ''
                     },
                     tooltips: {
                         mode: 'index',
@@ -252,7 +252,7 @@ No data for charts
                             display: true,
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Month'
+                                labelString: ''
                             }
                         }],
                         yAxes: [{

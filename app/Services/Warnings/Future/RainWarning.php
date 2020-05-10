@@ -8,14 +8,17 @@ use App\Services\Warnings\PresentWarning;
 
 class RainWarning extends  PresentWarning
 {
-
-    public function condition()
-    {
-        // TODO: Implement condition() method.
-    }
+    private $title = 'future.rain';
 
     public function get()
     {
-        // TODO: Implement get() method.
+        if ($this->condition()) {
+            return $this->title;
+        } else return null;
+    }
+
+    public function condition()
+    {
+        return 1;
     }
 }

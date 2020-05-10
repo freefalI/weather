@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Warnings\WarningService;
 use App\Station;
 use App\WeatherCharacteristic;
 use Illuminate\Http\Request;
@@ -74,7 +75,7 @@ class StationController extends Controller
 
         start_measure('render1', 'Time for rendering2');
         $weatherData = $res->groupBy('type');//->map(function ($val){return $val->toArray();});
-//        dump($weatherData);
+    //    dump($weatherData->toArray());
         stop_measure('render1');
         start_measure('render3', 'Time for rendering3');
 
@@ -85,7 +86,11 @@ class StationController extends Controller
 //        $res =Precipitation::where('station_id',$station->id)->get();
 //        stop_measure('render3');
         $dataForCharts = [];
-        return view('stations.show', ['station'=>$station,'measureData'=>$weatherData]);
+
+        $warningService = new WarningService($station->id);
+        $warnings= $warningService->getWarnings();
+//        dd($warnings);
+        return view('stations.show', ['station'=>$station,'measureData'=>$weatherData,'warnings'=>$warnings]);
     }
 
     /**

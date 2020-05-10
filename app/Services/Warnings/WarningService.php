@@ -32,12 +32,16 @@ class WarningService
     {
         $presentWarnings = [];
         foreach ($this->warningsAboutPresent as $warningClass) {
-            $presentWarnings[] = (new $warningClass($this->stationId))->get();
+            $warning = (new $warningClass($this->stationId))->get();
+            if ($warning)
+                $presentWarnings[] = $warning;
         }
 
         $futureWarnings = [];
         foreach ($this->warningsAboutFuture as $warningClass) {
-            $futureWarnings[] = (new $warningClass($this->stationId))->get();
+            $warning = (new $warningClass($this->stationId))->get();
+            if ($warning)
+                $presentWarnings[] = $warning;
         }
 
         return array_merge($presentWarnings, $futureWarnings);

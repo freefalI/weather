@@ -4,8 +4,6 @@
 namespace App\Services\Forecasts;
 use App\AirTemperature;
 use App\AtmospherePressure;
-use App\Forecast;
-use App\ForecastDetails;
 use App\Humidity;
 
 
@@ -21,19 +19,29 @@ class RoadIceForecast extends AbstractForecast
 
         if ($this->isGrowing($pressure) &&
             $this->isDecaying($airTemperature) &&
-            $this->isDecaying($humidity)
+            $this->isDecaying($humidity) &&
+            $this->getIcePrediction($airTemperature->last()->value, $humidity->last()->value)
         ) {
             $this->success();
         } else {
             $this->fail();
         }
     }
+
     public function success()
     {
-        $this->forecastModel->ice='1';
+        $this->forecastModel->ice = '1';
     }
+
     public function fail()
     {
-        $this->forecastModel->ice='0';
+        $this->forecastModel->ice = '0';
+    }
+
+    public function getIcePrediction($Tv, $W)
+    {
+        $Y = 0.092 * $Tv + 0.104 * $W - 9.142;
+        return $W > 60 && $Y > 0;
+
     }
 }

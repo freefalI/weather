@@ -21,6 +21,8 @@ class ForecastService
 
     public function run()
     {
+        Forecast::truncate();
+        ForecastDetails::truncate();
         $stations = Station::all();
         foreach ($stations as $station) {
             $forecast= Forecast::create(['station_id'=>$station->id]);

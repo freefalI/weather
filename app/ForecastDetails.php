@@ -12,7 +12,7 @@ class ForecastDetails extends Model
      * @var array
      */
     protected $fillable = [
-        'rain','ice',
+        'forecast_id','rain','ice',
     ];
 
 }

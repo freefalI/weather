@@ -23,6 +23,7 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
      * Station Endpoints
      */
     Route::get('stations', 'StationController@index')->name('stations.index');
+    Route::get('tasks', 'TaskController@index')->name('tasks.index');
 });
 
 

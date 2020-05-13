@@ -35,6 +35,7 @@ Route::resource('stations', 'StationController');
 Route::resource('tasks', 'TaskController');
 
 Route::get('stats', 'StatisticController@index')->name('stats');
+Route::get('forecasts', 'ForecastController@index')->name('forecasts');
 
 
 Route::any('{catchall}', function ($catchall) {

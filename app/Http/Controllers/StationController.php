@@ -34,7 +34,6 @@ class StationController extends Controller
             $statusTexts = [
                 'Safe conditions on the road',
                 'Danger conditions on the road!',
-
             ];
             $station->status = $status ? 'Danger' : 'Safe';
             $station->statusColor = $statusColors[$status];

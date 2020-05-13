@@ -7,10 +7,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('stats.stats') }}</div>
-                <div class="card-body">
-                    <table class="table table-sm">
-                        <tbody>
-                        <tr>
+                <div class="card-body row">
+                    <table class="table table-sm col-sm-5 border-dark" style="margin-left: 20px;margin-right: 50px;">
+                        <tbody  class="border-dark">
+                        <tr  class="border-dark">
                             <td>{{ __('stats.total_stations') }}</td>
                             <td>{{$stats['total_stations']}}</td>
                         </tr>
@@ -30,6 +30,55 @@
                             <td>{{ __('stats.avg_road_temperature') }}</td>
                             <td>{{$stats['avg_road_temperature']}}</td>
                         </tr>
+
+                        <tr>
+                            <td>{{ __('stats.average_conditions') }}</td>
+                            <td>{{$stats['average_conditions']}}</td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+{{--                    <br>--}}
+                 <table class="table table-sm col-sm-5">
+                        <tbody>
+                        <tr>
+                            <td>{{ __('stats.min_humidity') }}</td>
+                            <td>{{$stats['min_humidity']}}</td>
+                        </tr><tr>
+                            <td>{{ __('stats.max_humidity') }}</td>
+                            <td>{{$stats['max_humidity']}}</td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td>{{ __('stats.min_pressure') }}</td>
+                            <td>{{$stats['min_pressure']}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('stats.max_pressure') }}</td>
+                            <td>{{$stats['max_pressure']}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('stats.min_precipitation') }}</td>
+                            <td>{{$stats['min_precipitation']}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('stats.max_precipitation') }}</td>
+                            <td>{{$stats['max_precipitation']}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('stats.min_air_temperature') }}</td>
+                            <td>{{$stats['min_air_temperature']}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('stats.max_air_temperature') }}</td>
+                            <td>{{$stats['max_air_temperature']}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ __('stats.min_road_temperature') }}</td>
+                            <td>{{$stats['min_road_temperature']}}</td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </div>

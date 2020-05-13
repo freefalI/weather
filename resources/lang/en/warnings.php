@@ -3,7 +3,7 @@
 return [
     'now'=>[
         'rain'=>'Be careful! Now roads are wet.',
-        'high_road_temperature'=>'Be careful! Now roads have big temerature so it is npot reccomend to drive big weight auto.',
+        'high_road_temperature'=>'Be careful! Now roads have big temperature so it is not recommended to drive auto with big weight.',
         'snow'=>'Be careful! Now roads are snowy.'
     ],
     'future'=>[

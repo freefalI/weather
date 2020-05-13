@@ -29,9 +29,12 @@
             </div>
 
         </div>
+        <div class="card" style="margin-top: 30px">
+            <div class="card-header" style="background-color:{{$statusColor}};">{{ $statusText}}</div>
+        </div>
         @if(count($warnings))
             <div class="card" style="margin-top: 30px">
-                <div class="card-header" style="background-color:#ff000085;">{{ __('station.warnings_title') }}</div>
+                <div class="card-header" >{{ __('station.warnings_title') }}</div>
                 <div class="card-body">
                     <table class="table table-sm">
                         <tbody>

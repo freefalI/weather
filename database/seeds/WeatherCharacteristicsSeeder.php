@@ -23,14 +23,14 @@ class WeatherCharacteristicsSeeder extends Seeder
 
         $stations = \App\Station::all();
         dump($stations->count());
-        $timeMin = Carbon::now()->subDays(20);
+        $timeMin = Carbon::now()->subDays(1);
         echo $timeMin->toDateString();
         $data = [[], [], [], [], []];
         foreach ($stations as $station) {
             dump($station->name);
 //            dump($timeMin->toDateTimeString());
 
-            for ($date = clone $timeMin; $date < Carbon::now(); $date = $date->addDay()) {
+            for ($date = clone $timeMin; $date < Carbon::now(); $date = $date->addHour()) {
 //                dump($date->toDateTimeString());
                 if (count($data[0])) {
                     $prev = $data[0][count($data[0]) - 1]['value'];
@@ -80,7 +80,7 @@ class WeatherCharacteristicsSeeder extends Seeder
                     $newNumber = random_int(10,20);
 
                 }
-
+//                dd($newNumber);
                 $data[2][] = [
                     'station_id' => $station->id,
                     'value' => $newNumber,
@@ -88,18 +88,21 @@ class WeatherCharacteristicsSeeder extends Seeder
                     'type'=>'App\AirTemperature'
 
                 ];
-
-                if (count($data[3])) {
-                    $prev = $data[3][count($data[3]) - 1]['value'];
-                    dump($prev);
-//                    if($prev>25 && $prev < 95) {
-                    $newNumber = random_int($prev - 10, $prev + 10);
-//                    }
-//                    $newNumber =random_int($prev-5, $prev+5);
-                } else {
-                    $newNumber = random_int(10,15);
-
-                }
+//
+//                if (count($data[3])) {
+//                    $prev = $data[3][count($data[3]) - 1]['value'];
+//                    dump($prev);
+//
+////                    if($prev>25 && $prev < 95) {
+//                    $newNumber = random_int($prev - 10, $prev + 10);
+////                    }
+////                    $newNumber =random_int($prev-5, $prev+5);
+//                } else {
+//                    $newNumber = random_int(10,15);
+//
+//                }
+                $num =  $data[2][count($data[2])-1]['value'];
+                $newNumber = random_int($num - 2, $num +2);
                 $data[3][] = [
                     'station_id' => $station->id,
                     'value' => $newNumber,

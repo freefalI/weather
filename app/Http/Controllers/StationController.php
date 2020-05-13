@@ -14,6 +14,7 @@ class StationController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
     public function index()
     {
 //        $this->authorize('manage_station');
@@ -21,6 +22,24 @@ class StationController extends Controller
         $stationQuery = Station::query();
         $stationQuery->where('name', 'like', '%'.request('q').'%');
         $stations = $stationQuery->paginate(25);
+        foreach ( $stations as &$station) {
+            $warningService = new WarningService($station->id);
+            $warnings = $warningService->getWarnings();
+            $status = 0;//all is ok
+            if ($warnings) $status = 1; // danger
+            $statusColors = [
+                '#75ff0085',
+                '#ff000085'
+            ];
+            $statusTexts = [
+                'Safe conditions on the road',
+                'Danger conditions on the road!',
+
+            ];
+            $station->status = $status ? 'Danger' : 'Safe';
+            $station->statusColor = $statusColors[$status];
+        }
+
 
         return view('stations.index', compact('stations'));
     }
@@ -89,8 +108,19 @@ class StationController extends Controller
 
         $warningService = new WarningService($station->id);
         $warnings= $warningService->getWarnings();
+        $status = 0;//all is ok
+        if($warnings)$status = 1; // danger
+        $statusColors =[
+            '#75ff0085',
+            '#ff000085'
+        ];
+        $statusTexts =[
+            'Safe conditions on the road',
+            'Danger conditions on the road!',
+
+        ];
 //        dd($warnings);
-        return view('stations.show', ['station'=>$station,'measureData'=>$weatherData,'warnings'=>$warnings]);
+        return view('stations.show', ['station'=>$station,'measureData'=>$weatherData,'warnings'=>$warnings,'statusColor'=>$statusColors[$status],'statusText'=>$statusTexts[$status]]);
     }
 
     /**

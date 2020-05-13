@@ -33,6 +33,7 @@
                         <th>{{ __('station.address') }}</th>
                         <th>{{ __('station.latitude') }}</th>
                         <th>{{ __('station.longitude') }}</th>
+                        <th>{{ __('station.status') }}</th>
                         <th class="text-center">{{ __('app.action') }}</th>
                     </tr>
                 </thead>
@@ -44,6 +45,7 @@
                         <td>{{ $station->address }}</td>
                         <td>{{ $station->latitude }}</td>
                         <td>{{ $station->longitude }}</td>
+                        <td style="background-color:{{ $station->statusColor}};">{{ $station->status }}</td>
                         <td class="text-center">
                             <a href="{{ route('stations.show', $station) }}" id="show-station-{{ $station->id }}">{{ __('app.show') }}</a>
                         </td>

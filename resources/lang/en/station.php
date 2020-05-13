@@ -14,6 +14,7 @@ return [
     'back_to_show'  => 'Back to Station Detail',
     'back_to_index' => 'Back to Station List',
     'warnings_title' => 'Warnings',
+    'status' => 'Conditions',
 
     // Actions
     'create'         => 'Create new Station',

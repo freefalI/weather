@@ -27,4 +27,4 @@ Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
 });
 
 
-Route::post('add_measure','Api\WeatherCharacteristicController@store');
+Route::get('add_measure','Api\WeatherCharacteristicController@store');

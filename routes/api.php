@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['as' => 'api.', 'namespace' => 'Api'], function () {
+    /*
+     * Station Endpoints
+     */
+    Route::get('stations', 'StationController@index')->name('stations.index');
+    Route::get('tasks', 'TaskController@index')->name('tasks.index');
+});
+
+
+Route::get('add_measure','Api\WeatherCharacteristicController@store');
